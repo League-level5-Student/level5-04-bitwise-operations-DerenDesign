@@ -8,7 +8,7 @@ public class _01_BinaryPrinter {
      */
 
 
-    public void printByteBinary(byte b) {
+    public static void printByteBinary(byte b) {
         // We first want to print the bit in the one's place
 
         // Shift b seven bits to the right
@@ -19,9 +19,17 @@ public class _01_BinaryPrinter {
         // Print the result using System.out.print (NOT System.out.println)
 
         //Use this method to print the remaining 7 bits of b
+    	System.out.println((b & 0b10000000) >> 7);
+    	System.out.println((b & 0b01000000) >> 6);
+    	System.out.println((b & 0b00100000) >> 5);
+    	System.out.println((b & 0b00010000) >> 4);
+    	System.out.println((b & 0b00001000) >> 3);
+    	System.out.println((b & 0b00000100) >> 2);
+    	System.out.println((b & 0b00000010) >> 1);
+    	System.out.println((b & 0b00000001) >> 0);
     }
 
-    public void printShortBinary(short s) {
+    public static void printShortBinary(short s) {
         // Create 2 byte variables
 
         // Use bit shifting and masking (&) to save the first
@@ -30,9 +38,14 @@ public class _01_BinaryPrinter {
 
         // Call printByteBinary twice using the two bytes
         // Make sure they are in the correct order
+    	byte byt1 = (byte)(s >> 8);
+    	byte byt2 = (byte)((s << 8) >> 8);
+    	
+    	printByteBinary(byt2);
+    	printByteBinary(byt1);
     }
 
-    public void printIntBinary(int i) {
+    public static void printIntBinary(int i) {
         // Create 2 short variables
 
         // Use bit shifting and masking (&) to save the first
@@ -41,13 +54,27 @@ public class _01_BinaryPrinter {
 
         // Call printShortBinary twice using the two short variables
         // Make sure they are in the correct order
+    	short short1 = (short)(i >> 16);
+    	short short2 = (short)((i << 16) >> 16);
+    	
+    	printShortBinary(short1);
+    	printShortBinary(short2);
     }
 
-    public void printLongBinary(long l) {
+    public static void printLongBinary(long l) {
         // Use the same method as before to complete this method
+    	int byt1 = (int)(l >> 16);
+    	int byt2 = (int)((l << 32) >> 32);
+    	
+    	printIntBinary(byt2);
+    	printIntBinary(byt1);
     }
 
     public static void main(String[] args) {
         // Test your methods here
+    	printByteBinary((byte)(226));
+    	System.out.println();
+    	printIntBinary(271234890);
+    	System.out.println();
     }
 }

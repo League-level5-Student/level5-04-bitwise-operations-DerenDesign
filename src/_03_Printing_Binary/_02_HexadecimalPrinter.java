@@ -52,7 +52,10 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * You don't have to handle negative numbers unless you want the challenge!
      */
     String binaryToHex(String binaryStr) {
-        return "-";
+    	if(binaryStr.length() == 0) {
+    		 return "-";
+    	}
+       return "";
     }
     
     String binaryToDec(String binaryStr) {
@@ -67,8 +70,14 @@ public class _02_HexadecimalPrinter implements ActionListener {
             return "-";
         }
 
-        return "-";
+        int num = Integer.parseInt(binaryToDec(binaryStr));
+        
+        String string = Character.getName(num);
+        
+        return string;
     }
+    
+    
     
     public static void main(String[] args) {
         new _02_HexadecimalPrinter().start();
